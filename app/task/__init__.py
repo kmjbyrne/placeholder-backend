@@ -3,12 +3,17 @@ from flask_electron.blueprint.core import CoreBlueprint
 
 from .dao import TaskDAO
 from .models import Task
+from .models import Tasktype
 
 task_blueprint = CoreBlueprint(
-    'category',
+    'task',
     __name__,
-    TaskDAO,
-    Task
+    dao=TaskDAO,
+    model=Task
 )
 
-# from . import models
+tasktype_blueprint = CoreBlueprint(
+    'tasktype',
+    __name__,
+    model=Tasktype
+)

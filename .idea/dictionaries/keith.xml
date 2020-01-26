@@ -3,8 +3,11 @@
     <words>
       <w>appstate</w>
       <w>classname</w>
+      <w>queryargs</w>
+      <w>sortkey</w>
       <w>sqlalchemy</w>
       <w>tablename</w>
+      <w>tasktype</w>
     </words>
   </dictionary>
 </component>

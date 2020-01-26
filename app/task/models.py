@@ -10,5 +10,17 @@ class Task(DeclarativeBase):
     created = db.Column(db.Date, nullable=True)
     completed = db.Column(db.Date, nullable=True)
 
+    project_id = db.Column(db.Integer, db.ForeignKey('project.id'), nullable=True)
+    project = db.relationship('ProjectModel', backref='tasks', cascade='all', uselist=False)
+
+    def __repr__(self):
+        return self.label
+
+
+class Tasktype(DeclarativeBase):
+    __tablename__ = 'tasktype'
+    name = db.Column(db.String(120), nullable=True)
+    desc = db.Column(db.String(120), nullable=True)
+
     def __repr__(self):
         return self.name

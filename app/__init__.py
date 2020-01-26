@@ -9,7 +9,9 @@ from flask_cors import CORS
 from flask_electron.sqlalchemy.declarative import db
 from flask_electron.logger import get_rotating_file_handler
 
+from app._fixtures import tasks
 from app.task import task_blueprint
+from app.task import tasktype_blueprint
 from app.project import project_blueprint
 
 _appstate = Flask(__name__, instance_relative_config=True)
@@ -17,6 +19,7 @@ _appstate = Flask(__name__, instance_relative_config=True)
 apps = [
     (task_blueprint, '/task'),
     (project_blueprint, '/project'),
+    (tasktype_blueprint, '/tasktype'),
 ]
 
 
@@ -68,7 +71,9 @@ def create_app(env='DEV'):
     appstate.register_error_handler(500, error_handler)
 
     db.init_app(appstate)
+    db.drop_all()
     db.create_all()
+    tasks.create()
 
     @appstate.after_request
     def after_request(response):

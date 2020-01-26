@@ -1,0 +1,5 @@
+http POST :5000/api/project
+
+http POST :5000/api/tasktype desc=Task name=task
+http POST :5000/api/tasktype desc=Test name=chore
+http POST :5000/api/tasktype desc=Test name=Test
